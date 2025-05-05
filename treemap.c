@@ -212,23 +212,23 @@ Pair* upperBound(TreeMap* tree, void* key) {
     TreeNode* temp = tree->root;
     TreeNode* ub_node = NULL;
 
-    while (temp != NULL) {
-        if (tree->lower_than(key, temp->pair->key)) {
-            // key < temp->key → este nodo es posible upper bound
+    while (temp != NULL){
+        if (tree->lower_than(key, temp->pair->key)){
+            // Nos movemos a la izquierda y guardamos el temp como posible ub
             ub_node = temp;
             temp = temp->left;
-        } else if (tree->lower_than(temp->pair->key, key)) {
-            // key > temp->key → buscamos a la derecha
+        } else if (tree->lower_than(temp->pair->key, key)){
+            // Buscamos a la derecha
             temp = temp->right;
         } else {
-            // Clave exacta encontrada
+            // Si se encuentra la clave exacta
             tree->current = temp;
             return temp->pair;
         }
     }
 
     // Si no encontramos la clave exacta
-    if (ub_node != NULL) {
+    if (ub_node != NULL){
         tree->current = ub_node;
         return ub_node->pair;
     }

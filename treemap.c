@@ -75,17 +75,17 @@ void eraseTreeMap(TreeMap * tree, void* key){
 }
 
 
-
-
 Pair * searchTreeMap(TreeMap * tree, void* key) {
     TreeNode* temp = tree->root;
 
+    // Recorremos el tree comparando los key y cambiando el temp
     while (temp != NULL){
         if (tree->lower_than(key, temp->pair->key))
             temp = temp->left;
         else if (tree->lower_than(temp->pair->key, key))
             temp = temp->right;
         else {
+            // Si se encuentra el key buscado
             tree->current = temp;
             return temp->pair;
         }

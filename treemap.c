@@ -215,13 +215,22 @@ Pair * upperBound(TreeMap * tree, void* key) {
 Pair * firstTreeMap(TreeMap * tree) {
     TreeNode* temp = tree->root;
 
+    // Recorrer los hijos izquierdos hasta el tope y retornar el ultimo
     while (temp->left != NULL){
         temp = temp->left;
     }
-    
     return temp->pair;
 }
 
 Pair * nextTreeMap(TreeMap * tree) {
-    return NULL;
+    TreeNode* temp = tree->current;
+
+    if (temp->right != NULL)
+        return minimum(temp->right)->pair;
+
+    else {
+        while(temp->parent != NULL && temp->parent->right == temp)
+            temp = temp->parent;
+        return temp->parent;  // Este será NULL si el nodo es el máximo en el árbol
+    }
 }

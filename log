@@ -25,3 +25,9 @@ treemap.c:84:13: error: implicit declaration of function 'lower_than' [-Werror=i
              ^~~~~~~~~~
 cc1.exe: all warnings being treated as errors
 b91aa39
+Mon, May  5, 2025  4:19:01 AM: 
+ treemap.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+ tests:  11|6
+total_score: 15/70
+e1da651

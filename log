@@ -14,3 +14,14 @@ Mon, May  5, 2025  4:09:30 AM:
  tests:  4|7
 total_score: 5/70
 00972a7
+Mon, May  5, 2025  4:18:06 AM: 
+ treemap.c | 8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+Compilation failed
+In file included from test.c:4:0:
+treemap.c: In function 'searchTreeMap':
+treemap.c:84:13: error: implicit declaration of function 'lower_than' [-Werror=implicit-function-declaration]
+         if (lower_than(key, tree->current->pair->key))
+             ^~~~~~~~~~
+cc1.exe: all warnings being treated as errors
+b91aa39

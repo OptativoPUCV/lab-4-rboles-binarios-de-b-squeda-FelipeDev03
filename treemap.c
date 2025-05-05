@@ -213,7 +213,13 @@ Pair * upperBound(TreeMap * tree, void* key) {
 }
 
 Pair * firstTreeMap(TreeMap * tree) {
-    return NULL;
+    TreeNode* temp = tree->root;
+
+    while (temp->left != NULL){
+        temp = temp->left;
+    }
+    
+    return temp->pair;
 }
 
 Pair * nextTreeMap(TreeMap * tree) {

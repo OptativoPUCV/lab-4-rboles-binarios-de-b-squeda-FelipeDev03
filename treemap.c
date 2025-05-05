@@ -209,7 +209,21 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 
 
 Pair * upperBound(TreeMap * tree, void* key) {
-    return NULL;
+    TreeNode* temp = tree->root;
+    TreeNode* result = NULL;
+
+    while(temp != NULL) {
+        if(key < temp->pair->key) {
+            result = temp;
+            temp = temp->left;
+        } else if(key > temp->pair->key) {
+            temp = temp->right;
+        } else {
+            return temp->pair;  // Si la clave es igual a la del nodo, retornamos el nodo
+        }
+    }
+
+    return result->pair;  // Retorna NULL si todas las claves son menores que la dada
 }
 
 Pair * firstTreeMap(TreeMap * tree) {
@@ -224,19 +238,22 @@ Pair * firstTreeMap(TreeMap * tree) {
 
 Pair * nextTreeMap(TreeMap * tree) {
     TreeNode* temp = tree->current;
-
     if (temp == NULL) return NULL;
 
+    // Si el nodo tiene hijo derecho
     if (temp->right != NULL){
         tree->current = minimum(temp->right);
         return tree->current->pair;
     } else {
+        // Si no tiene hijo derecho, buscamos a un padre que sea el siguiente
         while(temp->parent != NULL && temp->parent->right == temp)
             temp = temp->parent;
 
         tree->current = temp->parent;
 
+        // Si no hay siguiente
         if (tree->current == NULL) return NULL;
-        return temp->parent->pair;  // Este será NULL si el nodo es el máximo en el árbol
+
+        return temp->parent->pair;
     }
 }

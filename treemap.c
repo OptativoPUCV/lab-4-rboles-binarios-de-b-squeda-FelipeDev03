@@ -225,12 +225,13 @@ Pair * firstTreeMap(TreeMap * tree) {
 Pair * nextTreeMap(TreeMap * tree) {
     TreeNode* temp = tree->current;
 
-    if (temp->right != NULL)
-        return minimum(temp->right)->pair;
-
-    else {
+    if (temp->right != NULL){
+        tree->current = minimum(temp->right);
+        return tree->current->pair;
+    } else {
         while(temp->parent != NULL && temp->parent->right == temp)
             temp = temp->parent;
-        return temp->parent;  // Este será NULL si el nodo es el máximo en el árbol
+        tree->current = temp;
+        return temp->parent->pair;  // Este será NULL si el nodo es el máximo en el árbol
     }
 }

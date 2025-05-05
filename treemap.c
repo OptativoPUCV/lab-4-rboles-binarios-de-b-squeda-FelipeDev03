@@ -208,22 +208,32 @@ Pair * searchTreeMap(TreeMap * tree, void* key) {
 }
 
 
-Pair * upperBound(TreeMap * tree, void* key) {
+Pair* upperBound(TreeMap* tree, void* key) {
     TreeNode* temp = tree->root;
-    TreeNode* result = NULL;
+    TreeNode* ub_node = NULL;
 
-    while(temp != NULL) {
-        if(key < temp->pair->key) {
-            result = temp;
+    while (temp != NULL) {
+        if (tree->lower_than(key, temp->pair->key)) {
+            // key < temp->key → este nodo es posible upper bound
+            ub_node = temp;
             temp = temp->left;
-        } else if(key > temp->pair->key) {
+        } else if (tree->lower_than(temp->pair->key, key)) {
+            // key > temp->key → buscamos a la derecha
             temp = temp->right;
         } else {
-            return temp->pair;  // Si la clave es igual a la del nodo, retornamos el nodo
+            // Clave exacta encontrada
+            tree->current = temp;
+            return temp->pair;
         }
     }
 
-    return result->pair;  // Retorna NULL si todas las claves son menores que la dada
+    // Si no encontramos la clave exacta
+    if (ub_node != NULL) {
+        tree->current = ub_node;
+        return ub_node->pair;
+    }
+
+    return NULL;
 }
 
 Pair * firstTreeMap(TreeMap * tree) {

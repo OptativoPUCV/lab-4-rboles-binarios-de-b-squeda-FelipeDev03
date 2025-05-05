@@ -31,3 +31,17 @@ Mon, May  5, 2025  4:19:01 AM:
  tests:  11|6
 total_score: 15/70
 e1da651
+Mon, May  5, 2025  4:24:56 AM: 
+ treemap.c | 15 ++++++++-------
+ 1 file changed, 8 insertions(+), 7 deletions(-)
+Compilation failed
+In file included from test.c:4:0:
+treemap.c: In function 'searchTreeMap':
+treemap.c:88:9: error: this 'else' clause does not guard... [-Werror=misleading-indentation]
+         else
+         ^~~~
+treemap.c:90:13: note: ...this statement, but the latter is misleadingly indented as if it is guarded by the 'else'
+             return temp->pair;
+             ^~~~~~
+cc1.exe: all warnings being treated as errors
+680a2d1
